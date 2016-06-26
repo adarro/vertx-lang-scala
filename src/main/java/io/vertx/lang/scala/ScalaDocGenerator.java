@@ -1,7 +1,9 @@
 package io.vertx.lang.scala;
 
-import io.vertx.codegen.ClassKind;
-import io.vertx.codegen.TypeInfo;
+import io.vertx.codegen.type.ClassKind;
+import io.vertx.codegen.type.ClassTypeInfo;
+import io.vertx.codegen.type.TypeInfo;
+import io.vertx.codegen.type.TypeMirrorFactory;
 import io.vertx.codetrans.CodeTranslator;
 //TODO import io.vertx.codetrans.ScalaLang;
 import io.vertx.docgen.Coordinate;
@@ -15,6 +17,7 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.ExecutableType;
 import javax.lang.model.type.TypeMirror;
+
 import java.util.List;
 
 /**
@@ -23,13 +26,13 @@ import java.util.List;
  */
 public class ScalaDocGenerator implements DocGenerator {
 
-  private TypeInfo.Factory factory;
+  private TypeMirrorFactory factory;
   private CodeTranslator translator;
   private ProcessingEnvironment env;
 
   @Override
   public void init(ProcessingEnvironment processingEnv) {
-    factory = new TypeInfo.Factory(processingEnv.getElementUtils(), processingEnv.getTypeUtils());
+    factory = new TypeMirrorFactory(processingEnv.getElementUtils(), processingEnv.getTypeUtils());
     translator = new CodeTranslator(processingEnv);
     env = processingEnv;
   }
@@ -69,7 +72,7 @@ public class ScalaDocGenerator implements DocGenerator {
       if (coordinate != null) {
         baselink = "../../" + coordinate.getArtifactId() + "/scala/";
       }
-      TypeInfo.Class.Api api = (TypeInfo.Class.Api) type.getRaw();
+      ClassTypeInfo api =  type.getRaw();
       return baselink + "scaladocs/" + api.translateName("scala").replace('.', '/') + ".html";
     }
     return null;

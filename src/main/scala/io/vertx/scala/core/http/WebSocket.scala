@@ -132,7 +132,7 @@ class WebSocket(private val _asJava: io.vertx.core.http.WebSocket)
   }
 
   def writeMessage(data: io.vertx.scala.core.buffer.Buffer): io.vertx.scala.core.http.WebSocket = {
-    _asJava.writeMessage(data.asJava.asInstanceOf[io.vertx.core.buffer.Buffer])
+    _asJava.writeBinaryMessage(data.asJava.asInstanceOf[io.vertx.core.buffer.Buffer])
     this
   }
 

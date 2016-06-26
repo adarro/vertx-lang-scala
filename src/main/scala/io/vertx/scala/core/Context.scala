@@ -100,14 +100,14 @@ class Context(private val _asJava: io.vertx.core.Context) {
     * @return true if this is an worker context, false otherwise
     */
   def isWorker(): Boolean = {
-    _asJava.isWorker()
+    _asJava.isWorkerContext()
   }
 
   /**
     * @return true if this is a multi-threaded worker context, false otherwise
     */
   def isMultiThreaded(): Boolean = {
-    _asJava.isMultiThreaded()
+    _asJava.isMultiThreadedWorkerContext() //TODO: Rename method to match (after compile works again)
   }
 
   /**

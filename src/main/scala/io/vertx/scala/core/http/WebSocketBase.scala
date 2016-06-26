@@ -226,7 +226,7 @@ object WebSocketBase {
       * @return a reference to this, so the API can be used fluently
       */
     def writeMessage(data: io.vertx.scala.core.buffer.Buffer): io.vertx.scala.core.http.WebSocketBase = {
-      _asJava.writeMessage(data.asJava.asInstanceOf[io.vertx.core.buffer.Buffer])
+      _asJava.writeBinaryMessage(data.asJava.asInstanceOf[io.vertx.core.buffer.Buffer])
       this
     }
 
